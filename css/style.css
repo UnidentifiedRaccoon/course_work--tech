@@ -1,5 +1,6 @@
 html,
 body {
+    overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     width: 100vw;
@@ -7,8 +8,7 @@ body {
 }
 
 a {
-    text-decoration: none;
-    color: black;
+    color: #1e88e5;
 }
 
 a:hover {
@@ -21,32 +21,129 @@ ul {
     list-style: none;
 }
 
+h1 {
+    font-size: 3rem;
+    margin-block: 1rem;
+    font-weight: 600;
+    color: #0B63F6;
+}
+
+img {
+    width: 100px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    padding: 10px 20px;
+    border: 1px solid #1e88e5;
+    border-radius: 1rem;
+    color: #1e88e5;
+    margin: 0.5rem;
+}
+
+p {
+    max-width: 400px;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+/**::-webkit-scrollbar-track {*/
+/*    background-color: #e4e4e4;*/
+/*    border-radius: 100px;*/
+/*}*/
+
+*::-webkit-scrollbar-thumb {
+    background-color: #3C82F8;
+    border-radius: 100px;
+}
+
+input:focus,
+input:hover {
+    border: 1px solid #0B63F6;
+    outline: none
+}
+
 .page_wrapper {
+    overflow-x: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 }
 
 .page {
+    overflow-x: hidden;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: stretch;
     width: 1280px;
 }
 
 .main {
-    padding-top: 200px;
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
 
+header {
+    border-bottom: 1px solid black;
+}
+
+header nav ul {
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+}
+
+header nav ul .sidebar__link {
+    border-bottom: none;
+}
+
+footer {
+    border-top: 1px solid black;
+}
+
+footer nav ul {
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+}
+
+footer nav ul .sidebar__link {
+    border-bottom: none;
+}
+
+ul a {
+    text-decoration: none;
+    color: black;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
 .sidebar {
     flex-shrink: 0;
 
     width: 200px;
-    height: 100vh;
     margin-right: 60px;
     padding: 20px;
 
@@ -78,4 +175,79 @@ ul {
 #add-form,
 #edit-form {
     display: none;
+}
+
+table {
+    overflow: scroll;
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+    margin-bottom: 20px;
+}
+th, td {
+    max-width: 200px;
+    border: 1px solid black; /* Параметры рамки */
+    text-align: center; /* Выравнивание по центру */
+    padding: 4px; /* Поля вокруг текста */
+}
+
+th {
+    color: white;
+    font-size: 1.5rem;
+    background: #3C82F8; /* Цвет фона ячейки */
+    height: 40px; /* Высота ячеек */
+    vertical-align: bottom; /* Выравнивание по нижнему краю */
+    padding: 0 10px;
+}
+
+@keyframes slideme {
+    0% {
+        left: -30px;
+        margin-left: 0px;
+    }
+    30% {
+        left: 110%;
+        margin-left: 80px;
+    }
+    100% {
+        left: 110%;
+        margin-left: 80px;
+    }
+}
+
+button {
+    min-height: 40px;
+    padding: 10px 20px;
+    margin-block: 0.5rem;
+    font-size: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    background: #0B63F6;
+}
+
+button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #3C82F8;
+}
+
+button:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 200px;
+    margin-left: 60px;
+    background: #fff;
+    opacity: 0.5;
+    position: absolute;
+    left: -40px;
+    top: -100px;
+    z-index: 1;
+    transform: rotate(45deg);
+    transition: all 0.1s;
+    animation-name: slideme;
+    animation-duration: 3s;
+    animation-delay: 0.05s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
 }

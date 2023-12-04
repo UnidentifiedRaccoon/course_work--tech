@@ -14,30 +14,26 @@
 <body>
 <div class="page_wrapper">
     <div class="page">
-        <?php require "../blocks/sidebar.php"?>
-        <main class="main">
-            <h1>Продукт</h1>
-            <section>
-                <?php require "../blocks/product.php"?>
-            </section>
-            <?php
-            if($_COOKIE['isLoggedIn'] == true):
-            ?>
-            <button id="edit-btn">edit</button>
-            <form id="def-form" action="../php/product-del.php" method="post">
-                <button type="submit">delete</button>
-            </form>
-            <form id="edit-form" class="form" action="../php/product-edit.php" method="post">
-                <input required сlass="form__input" type="text" name="name" id="name" placeholder="название">
-                <input required сlass="form__input" type="number" name="price" id="price" placeholder="цена">
-                <input сlass="form__input" type="text" name="description" id="description" placeholder="описание">
-                <input required сlass="form__input" type="number" name="category" id="category" placeholder="номер категории">
-                <button class="form__button">
-                    save
-                </button>
-            </form>
-            <?php endif;?>
-        </main>
+        <?php require "../blocks/header.php"?>
+        <div class="content">
+            <?php require "../blocks/sidebar.php"?>
+            <main class="main">
+                <h1>Продукт</h1>
+                <section>
+                    <?php require "../blocks/product.php"?>
+                </section>
+                <?php
+                if($_COOKIE['authToken']):
+                    ?>
+                    <button id="edit-btn">edit</button>
+                    <form id="def-form" action="../php/product-del.php" method="post">
+                        <button type="submit">delete</button>
+                    </form>
+                    <?php require "../blocks/product-edit-form.php"?>
+                <?php endif;?>
+            </main>
+        </div>
+        <?php require "../blocks/footer.php"?>
     </div>
 </div>
 </body>

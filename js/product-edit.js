@@ -3,7 +3,7 @@ const form = document.querySelector('#edit-form')
 
 if (btn && form) {
     btn.addEventListener('click', () => {
-        form.style.display = "block"
+        form.style.display = "flex"
         btn.style.display = "none"
     })
 

@@ -1,5 +1,6 @@
 <?php
     include("db_connection.php");
+    include("token-generate.php");
 
     $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
     $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_STRING);
@@ -18,7 +19,8 @@
     if($result) {
         $user = $result->fetch_assoc();
         if ($user) {
-            setcookie('isLoggedIn', true, time() + 3600, "/");
+            $authToken = generateToken($user['id']);
+            setcookie('authToken', $authToken, time() + 3600, "/");
         } else {
             echo "Запрашиваемый пользователь отстутствует в БД";
             exit();
@@ -27,6 +29,7 @@
         echo "Ошибка запроса к БД: " . $mysql->error;
         exit();
     }
+
 
     header("Location: ../pages/main.php");
 ?>

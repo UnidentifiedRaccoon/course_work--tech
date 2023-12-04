@@ -31,6 +31,7 @@ if($result) {
             <th>Название</th>
             <th>Цена</th>
             <th>Описание</th>
+            <th>Изображение</th>
         </tr>
         </thead>
         <tbody>
@@ -41,6 +42,7 @@ if($result) {
             <td><a href="product.php?product=<?= $row['id'] ?>"><?= $row['name'] ?></a></td>
             <td><?= $row['price'] ?></td>
             <td><?= $row['description'] ?></td>
+            <td><img src="<?= $row['image'] ?>"></td>
         </<tr>
             <?php
             }

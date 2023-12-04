@@ -13,19 +13,23 @@
 <body>
 <div class="page_wrapper">
     <div class="page">
-    <?php require "../blocks/sidebar.php"?>
-        <main class="main">
-            <h1>Вход</h1>
-            <section>
-                <form class="form" action="../php/login.php" method="post">
-                    <input сlass="form__input" type="text" name="login" id="login" placeholder="логин">
-                    <input сlass="form__input" type="password" name="password" id="password" placeholder="пароль">
-                    <button class="form__button">
-                        Войти
-                    </button>
-                </form>
-            </section>
-        </main>
+        <?php require "../blocks/header.php"?>
+        <div class="content">
+            <?php require "../blocks/sidebar.php"?>
+            <main class="main">
+                <h1>Вход</h1>
+                <section>
+                    <form class="form" action="../php/login.php" method="post">
+                        <input сlass="form__input" type="text" name="login" id="login" placeholder="логин">
+                        <input сlass="form__input" type="password" name="password" id="password" placeholder="пароль">
+                        <button class="form__button">
+                            Войти
+                        </button>
+                    </form>
+                </section>
+            </main>
+        </div>
+        <?php require "../blocks/footer.php"?>
     </div>>
 </div>
 </body>

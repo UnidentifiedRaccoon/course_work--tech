@@ -1,5 +1,6 @@
 <?php
 include("db_connection.php");
+include("token-check.php");
 
 $referringUrl = $_SERVER['HTTP_REFERER'];
 $urlParts = parse_url($referringUrl);

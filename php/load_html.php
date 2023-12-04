@@ -9,7 +9,7 @@
 ?>
         <?= $row['content'] ?>
 <?php
-        exit();
+
     } else {
         echo "Ошибка запроса к БД: " . $mysql->error;
         exit();

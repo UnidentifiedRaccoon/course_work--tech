@@ -14,18 +14,28 @@
 <body>
     <div class="page_wrapper">
         <div class="page">
-            <?php require "../blocks/sidebar.php"?>
-            <main class="main">
-                <h1>Главная</h1>
-                <?php
-                if($_COOKIE['isLoggedIn'] == true):
-                    ?>
-                    <button id="edit-btn">edit</button>
-                <?php endif;?>
-                <section id="edit-zone" data-name="dev">
-                    <?php $name="main"; require "../php/load_html.php"?>
-                </section>
-            </main>
+            <?php require "../blocks/header.php"?>
+            <div class="content">
+                <?php require "../blocks/sidebar.php"?>
+                <main class="main">
+                    <h1>Главная</h1>
+                    <?php
+                    if($_COOKIE['authToken']):
+                        ?>
+                        <button id="edit-btn">edit</button>
+                    <?php endif;?>
+                    <section id="edit-zone">
+                        <?php $name="main"; require "../php/load_html.php"?>
+                    </section>
+                    <form id="edit-form" class="form"  action="../php/edit_html.php" method="post">
+                        <textarea name="content" id="content" cols="100" rows="25"></textarea>
+                        <input сlass="form__input" type="text" name="name" id="name" hidden value="main">
+                        <button id="cancel-btn" type="button">Cancel</button>
+                        <button type="submit">Save</button>
+                    </form>
+                </main>
+            </div>
+            <?php require "../blocks/footer.php"?>
         </div>
     </div>
 </body>
