@@ -30,7 +30,7 @@
             </main>
         </div>
         <?php require "../blocks/footer.php"?>
-    </div>>
+    </div>
 </div>
 </body>
 </html>

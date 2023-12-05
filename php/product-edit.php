@@ -13,13 +13,23 @@ parse_str($urlParts['query'], $queryParams);
 $product = $queryParams['product'];
 $productID = intval($product);
 
-$query = "UPDATE `products` SET `name` = '$name', `price` = '$price', `description` = '$description', `category_id` = '$category', `image` = '$image' WHERE `products`.`id` = '$productID'";
-$result = $mysql->query($query);
+// Используйте подготовленное выражение для предотвращения SQL-инъекций
+$query = "UPDATE `products` SET `name` = ?, `price` = ?, `description` = ?, `category_id` = ?, `image` = ? WHERE `products`.`id` = ?";
+$stmt = $mysql->prepare($query);
 
-if($result) {
+if ($stmt) {
+    // Привязываем параметры к подготовленному выражению
+    $stmt->bind_param("sssssi", $name, $price, $description, $category, $image, $productID);
+
+    // Выполняем запрос
+    $stmt->execute();
+
+    // Закрываем подготовленное выражение
+    $stmt->close();
+
     echo "Данные обновлены";
 } else {
-    echo "Ошибка запроса к БД: " . $mysql->error;
+    echo "Ошибка подготовки запроса: " . $mysql->error;
     exit();
 }
 

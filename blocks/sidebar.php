@@ -7,20 +7,23 @@
                     <?php
                     include("../php/db_connection.php");
 
-                    //     Проверить, есть ли такая категория в БД
-                    $query = "SELECT * FROM `categories`";
-                    $result = $mysql->query($query);
+                    // Получить все категории из БД
+                    $stmtCategories = $mysql->prepare("SELECT * FROM `categories`");
+                    $stmtCategories->execute();
+                    $resultCategories = $stmtCategories->get_result();
 
-                    if($result) {
-                        while ($row = $result->fetch_assoc()) {
+                    if ($resultCategories) {
+                        while ($row = $resultCategories->fetch_assoc()) {
                             ?>
                             <li class="sidebar__submenu-item"><a class="sidebar__link" href="./category.php?category=<?= $row['id'] ?>"><?= $row['name'] ?></a></li>
                             <?php
                         }
                     } else {
-                        echo "Ошибка запроса к БД: " . $mysql->error;
+                        echo "Ошибка запроса к БД: " . $stmtCategories->error;
                         exit();
                     }
+
+                    $stmtCategories->close();
                     ?>
                 </ul>
             </li>

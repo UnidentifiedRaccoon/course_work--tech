@@ -2,7 +2,6 @@
 include("db_connection.php");
 include("token-check.php");
 
-
 $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
 $price = filter_var(trim($_POST['price']), FILTER_SANITIZE_STRING);
 $description = filter_var(trim($_POST['description']), FILTER_SANITIZE_STRING);
@@ -17,24 +16,55 @@ $urlCategoryNumber = intval($urlCategory);
 
 $category =  $formCategory ? $formCategory : $urlCategoryNumber;
 
-//     Проверить, есть ли такая категория в БД
-$query = "SELECT * FROM `categories` WHERE `id` = '$category'";
-$result = $mysql->query($query);
+// Проверить, есть ли такая категория в БД
+$query = "SELECT * FROM `categories` WHERE `id` = ?";
+$stmt = $mysql->prepare($query);
 
-if($result) {
-    $value = $result->fetch_assoc();
-    if ($value) {
+if ($stmt) {
+    // Привязываем параметры к подготовленному выражению
+    $stmt->bind_param("i", $category);
+
+    // Выполняем запрос
+    $stmt->execute();
+
+    // Получаем результаты запроса
+    $result = $stmt->get_result();
+
+    if ($result) {
+        $value = $result->fetch_assoc();
+        if (!$value) {
+            echo "Запрашиваемая категория не существует";
+            exit();
+        }
     } else {
-        echo "Запрашиваемая категория не существует";
+        echo "Ошибка запроса к БД: " . $stmt->error;
         exit();
     }
+
+    // Закрываем подготовленное выражение
+    $stmt->close();
 } else {
-    echo "Ошибка запроса к БД: " . $mysql->error;
+    echo "Ошибка подготовки запроса: " . $mysql->error;
     exit();
 }
 
-$query = "INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `image`) VALUES (NULL, '$category', '$name', '$price', '$description', '$image')";
-$result = $mysql->query($query);
+// Используйте подготовленное выражение для предотвращения SQL-инъекций
+$query = "INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `image`) VALUES (NULL, ?, ?, ?, ?, ?)";
+$stmt = $mysql->prepare($query);
+
+if ($stmt) {
+    // Привязываем параметры к подготовленному выражению
+    $stmt->bind_param("issss", $category, $name, $price, $description, $image);
+
+    // Выполняем запрос
+    $stmt->execute();
+
+    // Закрываем подготовленное выражение
+    $stmt->close();
+} else {
+    echo "Ошибка подготовки запроса: " . $mysql->error;
+    exit();
+}
 
 if ($formCategory) {
     header("Location: ../pages/catalog.php");

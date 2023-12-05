@@ -13,8 +13,22 @@
         exit();
     }
 
-    $query = "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'";
-    $result = $mysql->query($query);
+// Используйте подготовленное выражение для предотвращения SQL-инъекций
+    $query = "SELECT * FROM `users` WHERE `login` = ? AND `password` = ?";
+    $stmt = $mysql->prepare($query);
+
+    if ($stmt) {} else {
+        echo "Ошибка подготовки запроса: " . $mysql->error;
+        exit();
+    }
+
+    $stmt->bind_param("ss", $login, $password);
+
+    // Выполняем запрос
+    $stmt->execute();
+
+    // Получаем результаты запроса
+    $result = $stmt->get_result();
 
     if($result) {
         $user = $result->fetch_assoc();
@@ -30,6 +44,6 @@
         exit();
     }
 
-
+    $stmt->close();
     header("Location: ../pages/main.php");
 ?>

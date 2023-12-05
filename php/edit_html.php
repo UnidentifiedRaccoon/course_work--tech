@@ -5,12 +5,21 @@
     $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
     $content = trim($_POST['content']);
 
-    $query = "UPDATE `contents` SET content = '$content' where name = '$name'";
-    $result = $mysql->query($query);
+// Используйте подготовленное выражение для предотвращения SQL-инъекций
+    $query = "UPDATE `contents` SET content = ? WHERE name = ?";
+    $stmt = $mysql->prepare($query);
 
-    if ($result) {
+    if ($stmt) {
+        // Привязываем параметры к подготовленному выражению
+        $stmt->bind_param("ss", $content, $name);
+
+        // Выполняем запрос
+        $stmt->execute();
+
+        // Закрываем подготовленное выражение
+        $stmt->close();
     } else {
-        echo "Ошибка запроса к БД: " . $mysql->error;
+        echo "Ошибка подготовки запроса: " . $mysql->error;
         exit();
     }
 

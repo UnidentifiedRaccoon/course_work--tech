@@ -8,18 +8,25 @@ parse_str($urlParts['query'], $queryParams);
 $urlProduct = $queryParams['product'];
 $productID = intval($urlProduct);
 
+// Используйте подготовленное выражение для предотвращения SQL-инъекций
+$query = "DELETE FROM `products` WHERE `id` = ?";
+$stmt = $mysql->prepare($query);
 
-//     Проверить, есть ли такая категория в БД
-$query = "DELETE FROM `products` WHERE `id` = '$productID'";
-$result = $mysql->query($query);
+if ($stmt) {
+    // Привязываем параметры к подготовленному выражению
+    $stmt->bind_param("i", $productID);
 
-header("Location: ../pages/catalog.php");
+    // Выполняем запрос
+    $stmt->execute();
 
-if($result) {
-    echo "Товар удален";
+    // Закрываем подготовленное выражение
+    $stmt->close();
+
+    // Переносим header после проверки результата запроса
+    header("Location: ../pages/catalog.php");
+
 } else {
-    echo "Ошибка запроса к БД: " . $mysql->error;
+    echo "Ошибка подготовки запроса: " . $mysql->error;
     exit();
 }
-
 ?>
