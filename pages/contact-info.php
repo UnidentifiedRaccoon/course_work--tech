@@ -10,23 +10,23 @@
     <link rel="stylesheet" href="../css/style.css">
     <title>course_work--tech</title>
     <script src="../js/content-edit.js" defer></script>
+    <script src="../js/menu-catalog-show.js" defer></script>
 </head>
 <body>
     <div class="page_wrapper">
         <div class="page">
             <?php require "../blocks/header.php"?>
             <div class="content">
-                <?php require "../blocks/sidebar.php"?>
                 <main class="main">
-                    <h1>Контакты</h1>
+                    <h1><span>Контакты</span></h1>
+                    <section id="edit-zone">
+                        <?php $name="contact-info"; require "../php/load_html.php"?>
+                    </section>
                     <?php
                     if($_COOKIE['authToken']):
                         ?>
                         <button id="edit-btn">edit</button>
                     <?php endif;?>
-                    <section id="edit-zone">
-                        <?php $name="contact-info"; require "../php/load_html.php"?>
-                    </section>
                     <form id="edit-form" class="form"  action="../php/edit_html.php" method="post">
                         <textarea name="content" id="content" cols="100" rows="25"></textarea>
                         <input сlass="form__input" type="text" name="name" id="name" hidden value="contact-info">

@@ -22,10 +22,26 @@ ul {
 }
 
 h1 {
-    font-size: 3rem;
+    display: flex;
+    align-items: center;
     margin-block: 1rem;
+    max-width: 500px;
+    font-size: 3rem;
     font-weight: 600;
-    color: #0B63F6;
+    /*color: #1c8124;*/
+}
+
+h1 span {
+    display: block;
+    padding: 5px 30px;
+    color: #06750d;
+}
+
+h1::before, h1::after {
+    content: "";
+    height: 2px;
+    width: 200px;
+    background-color: #06750d;
 }
 
 img {
@@ -40,33 +56,27 @@ form {
 
 input {
     padding: 10px 20px;
-    border: 1px solid #1e88e5;
+    border: 2px solid rgb(154, 92, 0);
     border-radius: 1rem;
-    color: #1e88e5;
+    color: rgb(128, 76, 0);
     margin: 0.5rem;
 }
 
 p {
-    max-width: 400px;
+    max-width: 500px;
 }
 
 *::-webkit-scrollbar {
     width: 8px;
 }
 
-/**::-webkit-scrollbar-track {*/
-/*    background-color: #e4e4e4;*/
-/*    border-radius: 100px;*/
-/*}*/
-
 *::-webkit-scrollbar-thumb {
-    background-color: #3C82F8;
+    background-color: #06750d;
     border-radius: 100px;
 }
 
 input:focus,
 input:hover {
-    border: 1px solid #0B63F6;
     outline: none
 }
 
@@ -80,7 +90,6 @@ input:hover {
 }
 
 .page {
-    overflow-x: hidden;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -93,40 +102,113 @@ input:hover {
     overflow-x: hidden;
     width: 100%;
     padding-top: 50px;
+    padding-bottom: 50px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
 
-header {
-    border-bottom: 1px solid black;
+header, footer {
+    z-index: 1;
 }
 
-header nav ul {
-    width: 100%;
-    justify-content: space-around;
+header nav {
+    min-height: 75px;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    background-color: rgb(255, 195, 110);
+    border-radius: 35px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: 0px 5px 10px 0px rgb(0, 12, 56, 0.5);
 }
 
-header nav ul .sidebar__link {
-    border-bottom: none;
+header nav .logo {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    margin-right: 60px;
+    background-color: #06750d;
 }
 
-footer {
-    border-top: 1px solid black;
+.logo a {
+    font-size: 0;
+    padding: 0;
+    display: block;
 }
 
-footer nav ul {
-    width: 100%;
-    justify-content: space-around;
+header nav .menu {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: auto;
+
+    max-width: 450px;
+}
+
+.menu #catalog-submenu {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background-color: rgb(255, 222, 176);
+    border-radius: 35px;
+    box-shadow: 0px 5px 10px 0px rgb(0, 12, 56, 0.5);
+    padding: 20px
+
+}
+
+#catalog-submenu a {
+    padding: 5px 10px
+}
+
+header nav .entry {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+}
+
+
+header nav a {
+    color: black;
+    display: block;
+    padding: 10px 0;
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+footer nav {
+    min-height: 75px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: rgb(255, 195, 110);
+    border-radius: 35px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0px -5px 10px 0px rgb(0, 12, 56, 0.5);
 }
 
-footer nav ul .sidebar__link {
-    border-bottom: none;
+footer nav .menu {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+footer nav a {
+    color: black;
+    display: block;
+    padding: 10px 0;
+    font-size: 2rem;
+    text-decoration: none;
 }
 
 ul a {
@@ -193,10 +275,14 @@ th, td {
 th {
     color: white;
     font-size: 1.5rem;
-    background: #3C82F8; /* Цвет фона ячейки */
-    height: 40px; /* Высота ячеек */
+    background: #06750d; /* Цвет фона ячейки */
+    height: 25px; /* Высота ячеек */
     vertical-align: bottom; /* Выравнивание по нижнему краю */
-    padding: 0 10px;
+    padding: 15px 20px;
+}
+
+#edit-zone {
+    margin-bottom: 1.25em;
 }
 
 @keyframes slideme {
@@ -225,11 +311,11 @@ button {
     border-radius: 10px;
     text-decoration: none;
     color: white;
-    background: #0B63F6;
+    background: #06750d;
 }
 
 button:hover {
-    box-shadow: 0 0 0 2px white, 0 0 0 4px #3C82F8;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #03b212;
 }
 
 button:after {

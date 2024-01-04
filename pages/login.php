@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="../css/fonts.css">
     <link rel="stylesheet" href="../css/style.css">
     <title>course_work--tech</title>
+    <script src="../js/menu-catalog-show.js" defer></script>
 </head>
 <body>
 <div class="page_wrapper">
     <div class="page">
         <?php require "../blocks/header.php"?>
         <div class="content">
-            <?php require "../blocks/sidebar.php"?>
             <main class="main">
-                <h1>Вход</h1>
+                <h1><span>Вход</span></h1>
                 <section>
                     <form class="form" action="../php/login.php" method="post">
                         <input сlass="form__input" type="text" name="login" id="login" placeholder="логин">

@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="../css/style.css">
     <title>course_work--tech</title>
     <script src="../js/product-add.js" defer></script>
+    <script src="../js/menu-catalog-show.js" defer></script>
 </head>
 <body>
     <div class="page_wrapper">
         <div class="page">
             <?php require "../blocks/header.php"?>
             <div class="content">
-                <?php require "../blocks/sidebar.php"?>
                 <main class="main">
-                    <h1>Каталог</h1>
+                    <h1><span>Каталог</span></h1>
                     <section>
                         <?php require "../blocks/catalog-table.php"?>
                     </section>

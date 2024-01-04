@@ -14,7 +14,7 @@ if ($resultCategory) {
     $row = $resultCategory->fetch_assoc();
     if ($row) {
         ?>
-        <h1><?= $row['name'] ?></h1>
+        <h1><span><?= $row['name'] ?></span></h1>
         <?php
     } else {
         echo "Заголовок отсутствует";

@@ -1,16 +1,48 @@
 <header>
     <nav class="sidebar_nav">
-        <ul class="sidebar__menu-list">
-            <li class="sidebar__menu-item"><a class="sidebar__link" href="./main.php">Главная</a></li>
-            <li class="sidebar__menu-item"><a class="sidebar__link" href="./contact-info.php">Контакты</a></li>
-            <li class="sidebar__menu-item"><a class="sidebar__link" href="./dev.php">Разработка</a></li>
+        <div class="logo">
+            <a href="./main.php">
+                <img src="https://templates.mediamodifier.com/60c4c9fe7c11f3718bf5f5e2/pet-store-logo-design.jpg" alt="logo">
+            </a>
+        </div>
+        <div class="menu">
+            <div id="catalog-menu">
+                <a id="catalog-button-link" href="./catalog.php">Каталог</a>
+                <div id="catalog-submenu">
+                    <?php
+                    include("../php/db_connection.php");
+
+                    // Получить все категории из БД
+                    $stmtCategories = $mysql->prepare("SELECT * FROM `categories`");
+                    $stmtCategories->execute();
+                    $resultCategories = $stmtCategories->get_result();
+
+                    if ($resultCategories) {
+                        while ($row = $resultCategories->fetch_assoc()) {
+                            ?>
+                            <a href="./category.php?category=<?= $row['id'] ?>"><?= $row['name'] ?></a>
+                            <?php
+                        }
+                    } else {
+                        echo "Ошибка запроса к БД: " . $stmtCategories->error;
+                        exit();
+                    }
+
+                    $stmtCategories->close();
+                    ?>
+                </div>
+            </div>
+            <a href="./contact-info.php">Контакты</a>
+            <a href="./dev.php">Разработка</a>
+        </div>
+        <div class="entry">
             <?php
             if($_COOKIE['authToken']):
                 ?>
-                <li class="sidebar__menu-item"><a class="sidebar__link" href="./logout.php">Выход</a></li>
+                <a href="./logout.php">Выход</a></li>
             <?php else: ?>
-                <li class="sidebar__menu-item"><a class="sidebar__link" href="./login.php">Вход</a></li>
+                <a href="./login.php">Вход</a></li>
             <?php endif;?>
-        </ul>
+        </div>
     </nav>
 </header>

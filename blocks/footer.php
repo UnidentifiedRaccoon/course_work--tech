@@ -1,9 +1,10 @@
 <footer>
     <nav class="sidebar_nav">
-        <ul class="sidebar__menu-list">
-            <li class="sidebar__menu-item"><a class="sidebar__link" href="./main.php">Главная</a></li>
-            <li class="sidebar__menu-item"><a class="sidebar__link" href="./contact-info.php">Контакты</a></li>
-            <li class="sidebar__menu-item"><a class="sidebar__link" href="./dev.php">Разработка</a></li>
-        </ul>
+        <div class="menu">
+            <a href="./main.php">Главная</a>
+            <a href="./contact-info.php">Контакты</a>
+            <a href="./dev.php">Разработка</a>
+        </div>
     </nav>
 </footer>
+
