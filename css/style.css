@@ -5,6 +5,7 @@ body {
     font-size: 14px;
     width: 100vw;
     height: 100vh;
+    scrollbar-color: #06750d transparent;
 }
 
 a {
