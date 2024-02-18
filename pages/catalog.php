@@ -25,15 +25,17 @@
                     <?php
                     if($_COOKIE['authToken']):
                         ?>
-                        <button id="add-btn">add</button>
+                        <button id="add-btn">Добавить</button>
                         <form id="add-form" class="form" action="../php/product-add.php" method="post">
                             <input required сlass="form__input" type="text" name="name" id="name" placeholder="название">
                             <input required сlass="form__input" type="number" name="price" id="price" placeholder="цена">
                             <input сlass="form__input" type="text" name="description" id="description" placeholder="описание">
                             <input сlass="form__input" type="text" name="image" id="image" placeholder="ссылка на фотографию">
                             <input required сlass="form__input" type="number" name="category" id="category" placeholder="номер категории">
+                            <input required class="form__input" type="text" name="company" id="company" placeholder="ссылка на логотип">
+                            <button id="cancel-btn" type="button">Отменить</button>
                             <button class="form__button">
-                                save
+                                Сохранить
                             </button>
                         </form>
                     <?php endif;?>

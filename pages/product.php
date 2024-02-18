@@ -25,9 +25,9 @@
                 <?php
                 if($_COOKIE['authToken']):
                     ?>
-                    <button id="edit-btn">edit</button>
+                    <button id="edit-btn">Редактировать</button>
                     <form id="def-form" action="../php/product-del.php" method="post">
-                        <button type="submit">delete</button>
+                        <button type="submit">Удалить</button>
                     </form>
                     <?php require "../blocks/product-edit-form.php"?>
                 <?php endif;?>

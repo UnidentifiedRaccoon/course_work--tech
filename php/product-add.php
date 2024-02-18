@@ -7,6 +7,7 @@ $price = filter_var(trim($_POST['price']), FILTER_SANITIZE_STRING);
 $description = filter_var(trim($_POST['description']), FILTER_SANITIZE_STRING);
 $formCategory = filter_var(trim($_POST['category']), FILTER_SANITIZE_STRING);
 $image = filter_var(trim($_POST['image']), FILTER_SANITIZE_STRING);
+$company = filter_var(trim($_POST['company']), FILTER_SANITIZE_STRING);
 
 $referringUrl = $_SERVER['HTTP_REFERER'];
 $urlParts = parse_url($referringUrl);
@@ -49,12 +50,12 @@ if ($stmt) {
 }
 
 // Используйте подготовленное выражение для предотвращения SQL-инъекций
-$query = "INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `image`) VALUES (NULL, ?, ?, ?, ?, ?)";
+$query = "INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `image`, `company`) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
 $stmt = $mysql->prepare($query);
 
 if ($stmt) {
     // Привязываем параметры к подготовленному выражению
-    $stmt->bind_param("issss", $category, $name, $price, $description, $image);
+    $stmt->bind_param("isssss", $category, $name, $price, $description, $image, $company);
 
     // Выполняем запрос
     $stmt->execute();

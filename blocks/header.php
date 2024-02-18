@@ -2,7 +2,7 @@
     <nav class="sidebar_nav">
         <div class="logo">
             <a href="./main.php">
-                <img src="https://templates.mediamodifier.com/60c4c9fe7c11f3718bf5f5e2/pet-store-logo-design.jpg" alt="logo">
+                <span class="sign_word">Техномарт</span>
             </a>
         </div>
         <div class="menu">

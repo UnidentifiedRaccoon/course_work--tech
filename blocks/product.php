@@ -29,6 +29,7 @@ if ($resultProduct) {
             <th>Цена</th>
             <th>Описание</th>
             <th>Изображение</th>
+            <th>Производитель</th>
         </tr>
         </thead>
         <tbody>
@@ -38,6 +39,7 @@ if ($resultProduct) {
             <td><?= $row['price'] ?></td>
             <td><?= $row['description'] ?></td>
             <td><img src="<?= $row['image'] ?>"></td>
+            <td><img src="<?= $row['company'] ?>"></td>
         </tr>
         </tbody>
     </table>

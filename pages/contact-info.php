@@ -25,13 +25,13 @@
                     <?php
                     if($_COOKIE['authToken']):
                         ?>
-                        <button id="edit-btn">edit</button>
+                        <button id="edit-btn">Редактировать</button>
                     <?php endif;?>
                     <form id="edit-form" class="form"  action="../php/edit_html.php" method="post">
                         <textarea name="content" id="content" cols="100" rows="25"></textarea>
                         <input сlass="form__input" type="text" name="name" id="name" hidden value="contact-info">
-                        <button id="cancel-btn" type="button">Cancel</button>
-                        <button type="submit">Save</button>
+                        <button id="cancel-btn" type="button">Отменить</button>
+                        <button type="submit">Сохранить</button>
                     </form>
                 </main>
             </div>

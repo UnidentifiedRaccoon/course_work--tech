@@ -27,8 +27,9 @@ if ($resultProduct) {
         <input class="form__input" type="text" name="description" id="description" placeholder="описание" value="<?= $row['description'] ?>">
         <input class="form__input" type="text" name="image" id="image" placeholder="ссылка на фотографию" value="<?= $row['image'] ?>">
         <input required class="form__input" type="number" name="category" id="category" placeholder="номер категории" value="<?= $categoryID ?>">
+        <input required class="form__input" type="text" name="company" id="company" placeholder="ссылка на логотип" value="<?= $row['company'] ?>">
         <button class="form__button">
-            save
+            Coхранить
         </button>
     </form>
     <?php
